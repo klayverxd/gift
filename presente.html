@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Gift</title>
+		<style>
+			h1,
+			h2,
+			h3,
+			h4,
+			h5,
+			h6 {
+				color: aliceblue;
+				font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+					"Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+			}
+
+			body {
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				justify-content: space-evenly;
+				text-align: center;
+				height: 100vh;
+
+				background-color: #7653ae;
+			}
+
+			.botões {
+				display: flex;
+				flex-direction: column;
+				width: 100vw;
+				/* align-items: center; */
+				justify-content: space-between;
+				gap: 40px;
+			}
+
+			#moveBtn,
+			button {
+				background-color: #316099;
+				border: none;
+
+				height: 40px;
+
+				color: aliceblue;
+				font-weight: 700;
+				font-size: 16px;
+
+				max-width: 1000px;
+			}
+
+			canvas {
+				width: 100%;
+				height: 100%;
+				position: absolute;
+				z-index: -1;
+			}
+		</style>
+	</head>
+	<body>
+		<div>
+			<h2>
+				Mamãaae querida, meu coração por ti bate, como um caroço de abacate
+			</h2>
+			<h2>Feliz dia das mães! 🎁</h2>
+		</div>
+		<canvas id="custom_canvas"></canvas>
+		<div class="botões">
+			<button id="moveBtn">Faltou só um presentinho 🥺</button>
+			<button id="giftBtn">Eu sou o presente 😊</button>
+		</div>
+
+		<script src="https://cdn.jsdelivr.net/npm/js-confetti@latest/dist/js-confetti.browser.js"></script>
+		<script>
+			// Seleciona o botão
+			const moveBtn = document.getElementById("moveBtn");
+			const giftBtn = document.getElementById("giftBtn");
+			const canvas = document.getElementById("custom_canvas");
+
+			const jsConfetti = new JSConfetti({ canvas });
+
+			giftBtn.addEventListener("click", () => {
+				jsConfetti.addConfetti({
+					emojis: ["🎁", "💥", "✨"],
+					confettiNumber: 80,
+				});
+
+				setTimeout(function () {
+					window.open("https://www.youtube.com/watch?v=tkHbUZGblyM", "_blank");
+				}, 2500);
+			});
+
+			// Adiciona um ouvinte de evento para o clique no botão
+			moveBtn.addEventListener("click", function () {
+				// Obtém uma posição aleatória para o botão
+				moveBtn.style.position = `absolute`;
+
+				const randomX = Math.floor(
+					Math.random() * (window.innerWidth - moveBtn.clientWidth)
+				);
+				const randomY = Math.floor(
+					Math.random() * (window.innerHeight - moveBtn.clientHeight)
+				);
+
+				// Define a nova posição do botão
+				moveBtn.style.left = `${randomX}px`;
+				moveBtn.style.top = `${randomY}px`;
+				moveBtn.style.transform = `translate(-50%, -50%);`;
+			});
+
+			moveBtn.addEventListener("click", function () {
+				// Cria um novo elemento canvas para o confete
+				var canvas = document.createElement("canvas");
+				canvas.style.position = "fixed";
+				canvas.style.top = 0;
+				canvas.style.left = 0;
+				canvas.style.width = "100%";
+				canvas.style.height = "100%";
+				canvas.style.pointerEvents = "none";
+				document.body.appendChild(canvas);
+
+				// Inicia a animação do confete
+				confetti({
+					particleCount: 100,
+					spread: 70,
+					origin: { y: 0.6 },
+				});
+
+				// Espera 5 segundos antes de redirecionar o usuário para o link
+				setTimeout(function () {
+					window.location.href = "https://www.google.com";
+				}, 5000);
+			});
+
+			// Adiciona um ouvinte de evento para quando o mouse passa sobre o botão
+			moveBtn.addEventListener("mouseover", function () {
+				// Obtém uma posição aleatória para o botão
+				const randomX = Math.floor(
+					Math.random() * (window.innerWidth - moveBtn.clientWidth)
+				);
+				const randomY = Math.floor(
+					Math.random() * (window.innerHeight - moveBtn.clientHeight)
+				);
+
+				// Define a nova posição do botão
+				moveBtn.style.left = `${randomX}px`;
+				moveBtn.style.top = `${randomY}px`;
+			});
+		</script>
+	</body>
+</html>
