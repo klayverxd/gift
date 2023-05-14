@@ -8,13 +8,11 @@
 		<style>
 			h1,
 			h2,
-			/* .h2, */
 			h3,
 			h4,
 			h5,
 			h6 {
 				color: aliceblue;
-				font-size: medium;
 				font-weight: 700;
 				font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
 					"Lucida Sans Unicode", Geneva, Verdana, sans-serif;
@@ -102,7 +100,7 @@
 			#moveBtn {
 				position: absolute;
 				left: 50%;
-				bottom: 150px;
+				bottom: 260px;
 				transform: translateX(-50%);
 			}
 
@@ -111,7 +109,7 @@
 				background-color: #316099;
 				border: 1px solid white;
 
-				width: 100%;
+				width: 90%;
 				height: 40px;
 
 				color: aliceblue;
@@ -180,30 +178,6 @@
 				moveBtn.style.left = `${randomX}px`;
 				moveBtn.style.top = `${randomY}px`;
 				moveBtn.style.transform = `translate(-50%, -50%);`;
-			});
-
-			moveBtn.addEventListener("click", function () {
-				// Cria um novo elemento canvas para o confete
-				var canvas = document.createElement("canvas");
-				canvas.style.position = "fixed";
-				canvas.style.top = 0;
-				canvas.style.left = 0;
-				canvas.style.width = "100%";
-				canvas.style.height = "100%";
-				canvas.style.pointerEvents = "none";
-				document.body.appendChild(canvas);
-
-				// Inicia a animação do confete
-				confetti({
-					particleCount: 100,
-					spread: 70,
-					origin: { y: 0.6 },
-				});
-
-				// Espera 5 segundos antes de redirecionar o usuário para o link
-				setTimeout(function () {
-					window.location.href = "https://www.google.com";
-				}, 5000);
 			});
 
 			// Adiciona um ouvinte de evento para quando o mouse passa sobre o botão
