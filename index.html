@@ -8,13 +8,76 @@
 		<style>
 			h1,
 			h2,
+			/* .h2, */
 			h3,
 			h4,
 			h5,
 			h6 {
 				color: aliceblue;
+				font-size: medium;
+				font-weight: 700;
 				font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
 					"Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+			}
+
+			.arco-iris-animado {
+				background: -webkit-linear-gradient(
+					45deg,
+					#f00,
+					#ff0,
+					#0f0,
+					#0ff,
+					#00f,
+					#f0f
+				);
+				-webkit-background-clip: text;
+				-webkit-text-fill-color: transparent;
+				animation: rainbow 5s linear infinite;
+			}
+
+			.rainbow {
+				animation: rainbow 2.5s linear;
+				animation-iteration-count: infinite;
+			}
+
+			@keyframes rainbow {
+				100%,
+				0% {
+					color: rgb(255, 0, 0);
+				}
+				8% {
+					color: rgb(255, 127, 0);
+				}
+				16% {
+					color: rgb(255, 255, 0);
+				}
+				25% {
+					color: rgb(127, 255, 0);
+				}
+				33% {
+					color: rgb(0, 255, 0);
+				}
+				41% {
+					color: rgb(0, 255, 127);
+				}
+				50% {
+					color: rgb(0, 255, 255);
+				}
+				58% {
+					color: rgb(0, 127, 255);
+				}
+				66% {
+					color: rgb(0, 0, 255);
+				}
+				75% {
+					color: rgb(127, 0, 255);
+				}
+				83% {
+					color: rgb(255, 0, 255);
+				}
+				91% {
+					color: rgb(255, 0, 127);
+				}
 			}
 
 			body {
@@ -28,20 +91,27 @@
 				background-color: #7653ae;
 			}
 
-			.botões {
+			.botoes {
 				display: flex;
 				flex-direction: column;
 				width: 100vw;
-				/* align-items: center; */
+				align-items: center;
 				justify-content: space-between;
-				gap: 40px;
+			}
+
+			#moveBtn {
+				position: absolute;
+				left: 50%;
+				bottom: 150px;
+				/* transform: translateX(-50%); */
 			}
 
 			#moveBtn,
 			button {
 				background-color: #316099;
-				border: none;
+				border: 1px solid white;
 
+				width: 100%;
 				height: 40px;
 
 				color: aliceblue;
@@ -62,12 +132,14 @@
 	<body>
 		<div>
 			<h2>
-				Mamãaae querida, meu coração por ti bate, como um caroço de abacate
+				<div class="rainbow">
+					Mamãaae querida, meu coração por ti bate, como um caroço de abacate
+				</div>
 			</h2>
 			<h2>Feliz dia das mães! 🎁</h2>
 		</div>
 		<canvas id="custom_canvas"></canvas>
-		<div class="botões">
+		<div class="botoes">
 			<button id="moveBtn">Faltou só um presentinho 🥺</button>
 			<button id="giftBtn">Eu sou o presente 😊</button>
 		</div>
@@ -145,6 +217,7 @@
 				);
 
 				// Define a nova posição do botão
+				moveBtn.style.width = `auto`;
 				moveBtn.style.left = `${randomX}px`;
 				moveBtn.style.top = `${randomY}px`;
 			});
